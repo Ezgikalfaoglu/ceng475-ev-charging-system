@@ -1,6 +1,8 @@
 // Public landing page. OWNER: PM (finished on main).
 import Button from '../components/Button.jsx';
+import HeroBoard from '../components/HeroBoard.jsx';
 import Icon from '../components/Icon.jsx';
+import NightScene from '../components/NightScene.jsx';
 import StationCard from '../components/StationCard.jsx';
 import { useAsync } from '../hooks/useAsync.js';
 import { api } from '../lib/api.js';
@@ -25,9 +27,9 @@ export default function LandingPage() {
         <div className="hero__inner">
           <div>
             <h1>
-              Reserve your charge. <em>Skip the queue.</em>
+              Pick a time. <em>Plug in.</em>
             </h1>
-            <p className="lead">VoltFlow lets drivers find stations, book charging slots and follow their session, while operators manage chargers, prices and usage in one platform.</p>
+            <p className="lead">Every charger has its own attendant and every half hour is a slot on the board. Book a green one and follow your session, while operators manage chargers, prices and usage in one platform.</p>
             <div className="row">
               <Button variant="accent" size="lg" to={paths.register}>
                 Create a free account
@@ -38,6 +40,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="hero__card" aria-label="Network at a glance">
+            <HeroBoard stationName={stations[0]?.name} />
             <div className="hero__stats">
               <div className="hero__stat">
                 <strong>{stations.length || '-'}</strong>
@@ -59,6 +62,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <NightScene />
 
       <section className="section">
         <div className="section__inner">

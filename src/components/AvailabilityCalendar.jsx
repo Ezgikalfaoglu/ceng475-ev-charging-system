@@ -8,6 +8,12 @@
 //   interactive  false renders a read-only view
 // Slot states: free | booked | blocked | past | unavailable. Only "free" slots can be clicked.
 import { timeOf } from '../../shared/time.js';
+import Attendant from './Attendant.jsx';
+
+// Pose of a charger's attendant: asleep when the charger is out of service, plugging in when one of
+// its slots is selected, waving otherwise. Purely visual.
+const poseFor = (charger, hasSelection) =>
+  charger.status !== 'operational' ? 'out' : hasSelection ? 'work' : 'idle';
 
 const STATE_LABEL = { free: 'free', booked: 'already booked', blocked: 'blocked by the operator', past: 'in the past', unavailable: 'charger not available' };
 
@@ -35,13 +41,18 @@ export default function AvailabilityCalendar({ chargers, selected = null, onSele
             ))}
           </div>
         )}
-        {chargers.map((charger) => (
+        {chargers.map((charger, index) => (
           <div key={charger.id} className="avail__row">
             <div className="avail__label">
-              <strong>Charger {charger.label}</strong>
-              <span>
-                {charger.connectorType} · {charger.powerKw} kW
-              </span>
+              <div className="avail__who">
+                <Attendant pose={poseFor(charger, selected?.chargerId === charger.id)} look={index} delay={-index * 0.5} />
+              </div>
+              <div>
+                <strong>Charger {charger.label}</strong>
+                <span>
+                  {charger.connectorType} · {charger.powerKw} kW
+                </span>
+              </div>
             </div>
             {charger.slots.map((slot) => {
               const chosen = isSelected(charger, slot);
@@ -64,10 +75,10 @@ export default function AvailabilityCalendar({ chargers, selected = null, onSele
       </div>
       <div className="avail__legend" aria-hidden="true">
         <span><i style={{ background: 'var(--slot-free)', borderColor: 'var(--slot-free-border)' }} /> Free</span>
-        <span><i style={{ background: 'var(--slot-selected)' }} /> Selected</span>
-        <span><i style={{ background: 'var(--slot-booked)' }} /> Booked</span>
+        <span><i className="is-selected" /> Selected</span>
+        <span><i className="is-booked" /> Booked</span>
         <span><i style={{ background: 'var(--slot-blocked)', borderColor: 'var(--warning)' }} /> Blocked</span>
-        <span><i style={{ background: 'var(--grey-100)' }} /> Not available</span>
+        <span><i className="is-out" /> Not available</span>
       </div>
     </div>
   );

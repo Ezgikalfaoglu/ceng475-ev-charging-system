@@ -1,0 +1,22 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Local database and runtime files (never commit these)
+data/*.db
+data/*.db.tmp
+data/*.lock
+data/.jwt-secret
+
+# Environment files (use .env.example as the template)
+.env
+.env.*
+!.env.example
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+*.log
+coverage/

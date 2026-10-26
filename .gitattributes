@@ -1,0 +1,6 @@
+# Same line endings on macOS and Windows so diffs stay clean.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary
+*.db binary

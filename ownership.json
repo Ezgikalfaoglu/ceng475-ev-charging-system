@@ -1,0 +1,87 @@
+{
+  "_comment": "Who may edit which files. Read by scripts/check-ownership.mjs (npm run check:ownership) and by CI on every pull request. The longest matching path wins. A path ending in / is a folder prefix, anything else is an exact file. Edit this file only through a PM-reviewed pull request.",
+  "owners": {
+    "melike": {
+      "name": "Melike Şahin",
+      "branches": ["dev/melike-sahin"],
+      "paths": [
+        "src/features/auth/",
+        "src/features/profile/",
+        "src/features/notifications/",
+        "src/features/admin/stations/",
+        "src/features/admin/pricing/",
+        "server/routes/auth.js",
+        "server/routes/users.js",
+        "server/routes/notifications.js",
+        "server/routes/adminStations.js",
+        "server/routes/pricing.js",
+        "server/queries/users.js",
+        "server/queries/notifications.js",
+        "server/services/accounts/",
+        "server/services/catalog/",
+        "server/tests/auth.test.js",
+        "server/tests/users.test.js",
+        "server/tests/notifications.test.js",
+        "server/tests/adminStations.test.js",
+        "docs/developers/MELIKE.md"
+      ]
+    },
+    "berfin": {
+      "name": "Berfin Özçelik",
+      "branches": ["dev/berfin-ozcelik"],
+      "paths": [
+        "src/features/stations/",
+        "src/features/availability/",
+        "src/features/reservations/",
+        "src/components/AvailabilityCalendar.jsx",
+        "src/components/StationCard.jsx",
+        "src/components/ReservationCard.jsx",
+        "server/routes/stations.js",
+        "server/routes/availability.js",
+        "server/routes/reservations.js",
+        "server/queries/stations.js",
+        "server/queries/availability.js",
+        "server/queries/reservations.js",
+        "server/services/reservations/",
+        "server/tests/stations.test.js",
+        "server/tests/availability.test.js",
+        "server/tests/reservations.test.js",
+        "docs/developers/BERFIN.md"
+      ]
+    },
+    "eda": {
+      "name": "Türkan Eda Uluçay",
+      "branches": ["dev/turkan-eda-ulucay"],
+      "paths": [
+        "src/features/charging/",
+        "src/features/dashboard/",
+        "src/features/admin/dashboard/",
+        "src/features/admin/chargers/",
+        "src/features/admin/analytics/",
+        "src/features/admin/reservations/",
+        "src/components/ChargingProgress.jsx",
+        "src/components/BarChart.jsx",
+        "server/routes/chargingSessions.js",
+        "server/routes/adminChargers.js",
+        "server/routes/analytics.js",
+        "server/routes/adminReservations.js",
+        "server/queries/sessions.js",
+        "server/queries/analytics.js",
+        "server/services/charging/",
+        "server/services/analytics/",
+        "server/tests/chargingSessions.test.js",
+        "server/tests/adminOps.test.js",
+        "docs/developers/EDA.md"
+      ]
+    },
+    "pm": {
+      "name": "Ezgi (PM / QA)",
+      "branches": ["main", "pm/*", "chore/*", "docs/*"],
+      "paths": ["*"]
+    }
+  },
+  "anyone": [
+    "DEVELOPER_README.md"
+  ],
+  "_anyone_comment": "Personal branch guide. Remove it with 'git rm DEVELOPER_README.md' before the final pull request, see docs/TASK_DISTRIBUTION.md."
+}

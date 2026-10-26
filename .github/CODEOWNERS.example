@@ -1,0 +1,17 @@
+# Copy to .github/CODEOWNERS and replace the placeholders with real GitHub user names.
+# Without real user names GitHub ignores or rejects the file, so it is not active by default.
+*                          @PM-GITHUB-NAME
+/src/features/auth/        @MELIKE-GITHUB-NAME
+/src/features/profile/     @MELIKE-GITHUB-NAME
+/src/features/notifications/ @MELIKE-GITHUB-NAME
+/src/features/admin/stations/ @MELIKE-GITHUB-NAME
+/src/features/admin/pricing/ @MELIKE-GITHUB-NAME
+/src/features/stations/    @BERFIN-GITHUB-NAME
+/src/features/availability/ @BERFIN-GITHUB-NAME
+/src/features/reservations/ @BERFIN-GITHUB-NAME
+/src/features/charging/    @EDA-GITHUB-NAME
+/src/features/dashboard/   @EDA-GITHUB-NAME
+/src/features/admin/dashboard/ @EDA-GITHUB-NAME
+/src/features/admin/chargers/ @EDA-GITHUB-NAME
+/src/features/admin/analytics/ @EDA-GITHUB-NAME
+/src/features/admin/reservations/ @EDA-GITHUB-NAME

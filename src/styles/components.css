@@ -26,12 +26,12 @@
 .btn--block { display: flex; width: 100%; }
 .btn--primary { background: var(--navy-900); color: #fff; }
 .btn--primary:hover:not(:disabled) { background: var(--navy-700); }
-.btn--accent { background: var(--teal-500); color: var(--navy-950); }
-.btn--accent:hover:not(:disabled) { background: var(--teal-600); }
+.btn--accent { background: linear-gradient(135deg, #5bffc0, var(--teal-600)); color: var(--navy-950); box-shadow: 0 10px 24px -12px rgb(20 184 125 / 0.8); }
+.btn--accent:hover:not(:disabled) { filter: brightness(1.05); transform: translateY(-1px); }
 .btn--secondary { background: var(--white); color: var(--navy-900); border-color: var(--grey-300); }
 .btn--secondary:hover:not(:disabled) { background: var(--grey-50); border-color: var(--grey-400); }
-.btn--outline-light { background: transparent; color: #fff; border-color: rgb(255 255 255 / 0.4); }
-.btn--outline-light:hover:not(:disabled) { background: rgb(255 255 255 / 0.12); border-color: #fff; }
+.btn--outline-light { background: rgb(255 255 255 / 0.5); color: var(--navy-900); border-color: var(--color-border); }
+.btn--outline-light:hover:not(:disabled) { background: #fff; border-color: var(--navy-900); }
 .btn--ghost { background: transparent; color: var(--grey-700); }
 .btn--ghost:hover:not(:disabled) { background: var(--grey-100); }
 .btn--danger { background: var(--danger); color: #fff; }
@@ -99,7 +99,7 @@
 }
 
 /* ---------- Card, badge, chip ---------- */
-.card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+.card { background: var(--color-glass); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
 .card__body { padding: var(--space-5); }
 .card__header { padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
 .card__header h2, .card__header h3 { font-size: var(--text-lg); }
@@ -152,7 +152,7 @@
 .stat-card { display: flex; gap: var(--space-4); align-items: center; padding: var(--space-5); }
 .stat-card__icon { width: 48px; height: 48px; border-radius: var(--radius-md); display: grid; place-items: center; background: var(--teal-50); color: var(--teal-800); flex: none; }
 .stat-card--navy { background: var(--navy-900); border-color: var(--navy-800); }
-.stat-card--navy .stat-card__icon { background: rgb(0 212 170 / 0.16); color: var(--teal-500); }
+.stat-card--navy .stat-card__icon { background: rgb(43 229 158 / 0.16); color: var(--teal-500); }
 .stat-card--navy .stat-card__value { color: #fff; }
 .stat-card--navy .stat-card__label, .stat-card--navy .stat-card__hint { color: #b9c8e0; }
 .stat-card__label { font-size: var(--text-sm); color: var(--color-text-muted); font-weight: 500; }
@@ -210,7 +210,7 @@
 .avail__row { display: flex; align-items: center; gap: 3px; }
 .avail__label { position: sticky; left: 0; z-index: 1; width: 150px; flex: none; background: var(--white); padding: var(--space-2) var(--space-3) var(--space-2) 0; }
 .avail__label strong { display: block; font-size: var(--text-sm); }
-.avail__label span { font-size: var(--text-xs); color: var(--color-text-muted); }
+.avail__label span { display: block; font-size: var(--text-xs); color: var(--color-text-muted); }
 .avail__hours { display: flex; gap: 3px; margin-left: 153px; font-size: var(--text-xs); color: var(--color-text-muted); }
 .avail__hour { width: calc(var(--slot-w) * 2 + 3px); flex: none; }
 .avail { --slot-w: 40px; }
@@ -245,12 +245,12 @@
 .res-card--cancelled .res-card__date { background: var(--grey-500); }
 
 /* ---------- Charging progress ---------- */
-.charge { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--space-6); align-items: center; padding: var(--space-5); }
+.charge { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: var(--space-6); align-items: center; padding: var(--space-5); }
 .charge__ring { position: relative; width: 200px; height: 200px; margin: 0 auto; }
 .charge__ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .charge__ring circle { fill: none; stroke-width: 14; }
-.charge__track { stroke: var(--grey-200); }
-.charge__value { stroke: var(--teal-500); stroke-linecap: round; transition: stroke-dashoffset 600ms ease; }
+.charge__track { stroke: rgb(10 31 68 / 0.1); }
+.charge__value { stroke: url(#charge-gradient); stroke-linecap: round; transition: stroke-dashoffset 600ms ease; }
 .charge--completed .charge__value { stroke: var(--success); }
 .charge--cancelled .charge__value { stroke: var(--grey-400); }
 .charge__center { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }

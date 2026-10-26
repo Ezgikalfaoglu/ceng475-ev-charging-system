@@ -1,4 +1,5 @@
 // Two-column layout for the sign-in and register pages. OWNER: PM.
+import Attendant from '../components/Attendant.jsx';
 import Icon from '../components/Icon.jsx';
 import { Brand } from '../components/Navbar.jsx';
 
@@ -15,6 +16,11 @@ export default function AuthLayout({ children }) {
             <li><Icon name="bolt" /> Track your simulated charging session</li>
             <li><Icon name="bell" /> Get reminders in your notification centre</li>
           </ul>
+        </div>
+        <div className="auth__crew" aria-hidden="true">
+          <Attendant pose="idle" look={0} />
+          <Attendant pose="work" look={1} delay={-0.5} />
+          <Attendant pose="done" look={2} delay={-1} />
         </div>
         <small style={{ color: 'var(--grey-400)' }}>Course project demo. No real payments or hardware.</small>
       </aside>

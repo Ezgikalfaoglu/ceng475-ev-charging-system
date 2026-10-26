@@ -1,0 +1,140 @@
+/* Attendants, slot lanes and the night scene. OWNER: PM.
+   The attendant is one drawing, restyled with CSS variables (--skin, --hair, --st, --gl) and
+   posed with a class on its wrapper (p-idle, p-work, p-no, p-out, p-done). */
+
+.att-wrap { display: block; width: 100%; height: 100%; }
+.att { display: block; overflow: visible; width: 100%; height: 100%; }
+.att .sk { fill: var(--skin, #f2c7a5); }
+.att .hr { fill: var(--hair, #2b1b12); }
+.att .stache { display: var(--st, none); }
+.att .glasses { display: var(--gl, none); }
+.att .body { animation: att-bob 2.8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.att .arm-w { rotate: 0deg; transform-origin: 38px 70px; }
+.att .arm-g { rotate: 0deg; transform-origin: 82px 70px; transition: rotate 0.7s cubic-bezier(0.3, 1.4, 0.4, 1); }
+.att .head { transform-origin: 60px 58px; transition: rotate 0.4s ease; }
+.att .eyes { transform-origin: 60px 42px; animation: att-blink 4.4s infinite; animation-delay: var(--d, 0s); }
+.att .eyes-closed, .att .m-flat, .att .m-open { display: none; }
+.att .bubble { opacity: 0; scale: 0; transform-origin: 94px 10px; }
+.att .b { opacity: 0; }
+.p-idle .arm-w { animation: att-wave 1.15s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.p-work .arm-g { rotate: -85deg; animation: att-plug 1.5s ease-in-out 0.7s infinite; }
+.p-work .gun-tip { animation: att-tip 0.5s ease-in-out infinite alternate; }
+.p-work .bubble, .p-no .bubble, .p-out .bubble, .p-done .bubble { animation: att-bpop 0.55s cubic-bezier(0.3, 1.5, 0.4, 1) forwards; }
+.p-work .b-bolt, .p-no .b-x, .p-out .b-z, .p-done .b-ok { opacity: 1; }
+.p-no .arm-w { animation: att-wag 0.36s ease-in-out infinite; }
+.p-no .head { animation: att-headno 0.5s ease-in-out infinite; }
+.p-no .m-smile, .p-out .m-smile, .p-done .m-smile { display: none; }
+.p-no .m-flat, .p-out .m-flat { display: inline; }
+.p-done .m-open { display: inline; }
+.p-done .body { animation: att-jump 0.55s ease-in-out infinite; }
+.p-done .arm-w { animation: att-cheer 0.5s ease-in-out infinite; }
+.p-done .arm-g { rotate: -165deg; animation: att-cheer2 0.5s ease-in-out infinite; }
+.p-out .body { animation: att-sleep 3.4s ease-in-out infinite; transform-origin: 60px 144px; }
+.p-out .head { rotate: 14deg; }
+.p-out .eyes { display: none; }
+.p-out .eyes-closed { display: inline; }
+.p-out .b-z text { animation: att-zfloat 2s ease-in-out infinite; }
+@keyframes att-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+@keyframes att-blink { 0%, 93%, 100% { scale: 1 1; } 96% { scale: 1 0.1; } }
+@keyframes att-wave { 0%, 100% { rotate: 132deg; } 50% { rotate: 162deg; } }
+@keyframes att-wag { 0%, 100% { rotate: 72deg; } 50% { rotate: 104deg; } }
+@keyframes att-cheer { 0%, 100% { rotate: 168deg; } 50% { rotate: 190deg; } }
+@keyframes att-cheer2 { 0%, 100% { rotate: -168deg; } 50% { rotate: -190deg; } }
+@keyframes att-plug { 0%, 100% { rotate: -85deg; } 50% { rotate: -76deg; } }
+@keyframes att-tip { from { opacity: 0.35; } to { opacity: 1; } }
+@keyframes att-headno { 0%, 100% { rotate: 0deg; } 25% { rotate: -9deg; } 75% { rotate: 9deg; } }
+@keyframes att-jump { 0%, 100% { translate: 0 0; } 50% { translate: 0 -11px; } }
+@keyframes att-sleep { 0%, 100% { rotate: 0deg; } 50% { rotate: 2.5deg; } }
+@keyframes att-bpop { from { opacity: 0; scale: 0.2; } to { opacity: 1; scale: 1; } }
+@keyframes att-zfloat { 0%, 100% { translate: 0 0; opacity: 0.7; } 50% { translate: 2px -3px; opacity: 1; } }
+
+/* ---------- Slot lanes (AvailabilityCalendar) ---------- */
+.avail__row { align-items: flex-end; padding-top: 40px; }
+.avail__label {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  width: 224px;
+  gap: var(--space-3);
+  background: transparent;
+  padding: 0 var(--space-3) 0 0;
+}
+.avail__label span { white-space: nowrap; }
+.avail__who { position: relative; width: 70px; height: 40px; flex: none; }
+.avail__who .att-wrap { position: absolute; left: 0; bottom: -2px; width: 62px; height: 78px; }
+.avail__label div strong { font-family: var(--font-display); font-size: var(--text-lg); color: var(--teal-800); line-height: 1; }
+.avail__hours { margin-left: 227px; }
+.avail__hour { font-weight: 800; color: var(--grey-600); font-variant-numeric: tabular-nums; }
+.avail { --slot-w: 40px; }
+.slot {
+  height: 40px;
+  border-radius: 9px;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--navy-950);
+}
+.slot--free { background: var(--slot-free); border: 1.5px solid var(--slot-free-border); }
+.slot:hover:not(:disabled) { background: rgb(43 229 158 / 0.36); transform: translateY(-2px); box-shadow: 0 8px 14px -8px rgb(20 184 125 / 0.9); }
+.slot--booked { background-color: rgb(10 31 68 / 0.06); border-color: rgb(10 31 68 / 0.28); background-image: repeating-linear-gradient(135deg, rgb(10 31 68 / 0.32) 0 2px, transparent 2px 6px); }
+.slot--blocked { background: var(--warning-bg); border-color: var(--warning); }
+.slot--past { background: rgb(10 31 68 / 0.05); border-color: rgb(10 31 68 / 0.1); opacity: 0.6; }
+.slot--unavailable { background: transparent; border: 1.5px dashed rgb(10 31 68 / 0.35); background-image: none; }
+.slot--selected, .slot--selected:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5bffc0, #14b87d);
+  border-color: #0a7d56;
+  box-shadow: 0 0 0 0 rgb(43 229 158 / 0.5);
+  animation: slot-glow 2.2s ease-in-out infinite;
+}
+@keyframes slot-glow { 0%, 100% { box-shadow: 0 0 0 0 rgb(43 229 158 / 0.45); } 50% { box-shadow: 0 0 0 6px rgb(43 229 158 / 0); } }
+.avail__legend i { border-radius: 5px; }
+.avail__legend i.is-selected { background: linear-gradient(135deg, #5bffc0, #14b87d); border-color: #0a7d56; }
+.avail__legend i.is-booked { background-color: rgb(10 31 68 / 0.06); background-image: repeating-linear-gradient(135deg, rgb(10 31 68 / 0.32) 0 2px, transparent 2px 6px); }
+.avail__legend i.is-out { background: transparent; border: 1.5px dashed rgb(10 31 68 / 0.35); }
+
+/* ---------- Landing hero board ---------- */
+.board { display: grid; gap: var(--space-2); }
+.board__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }
+.board__head strong { font-family: var(--font-display); font-size: var(--text-xl); }
+.board__head span { color: var(--grey-500); font-weight: 700; font-size: var(--text-sm); font-variant-numeric: tabular-nums; }
+.board__hours { display: grid; grid-template-columns: repeat(8, 1fr); margin-left: 84px; font-weight: 800; font-size: var(--text-xs); color: var(--grey-600); font-variant-numeric: tabular-nums; }
+.board__lane { display: flex; align-items: flex-end; gap: var(--space-2); padding-top: 28px; }
+.board__who { position: relative; width: 76px; height: 46px; flex: none; }
+.board__who .att-wrap { position: absolute; left: 0; bottom: -2px; width: 72px; height: 90px; }
+.board__main { flex: 1; min-width: 0; }
+.board__name { display: flex; align-items: baseline; gap: var(--space-2); margin-bottom: 5px; }
+.board__name strong { font-family: var(--font-display); font-size: var(--text-lg); line-height: 1; color: var(--teal-800); }
+.board__name span { font-size: var(--text-xs); color: var(--grey-500); }
+.board__strip { display: grid; grid-template-columns: repeat(16, 1fr); gap: 3px; }
+.board__cell { height: 34px; border-radius: 7px; border: 1.5px solid var(--slot-free-border); background: var(--slot-free); transition: background 0.3s ease, transform 0.3s ease; }
+.board__cell.is-booked { border-color: rgb(10 31 68 / 0.28); background-color: rgb(10 31 68 / 0.06); background-image: repeating-linear-gradient(135deg, rgb(10 31 68 / 0.32) 0 2px, transparent 2px 6px); }
+.board__cell.is-chosen { border-color: #0a7d56; background: linear-gradient(135deg, #5bffc0, #14b87d); animation: slot-glow 2.2s ease-in-out infinite; transform: translateY(-2px); }
+.hero__stats { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+
+/* ---------- Night scene band ---------- */
+.night { background: #06122b; border-top: 1px solid rgb(43 229 158 / 0.25); overflow: hidden; }
+.night svg { display: block; width: 100%; height: 300px; }
+.night__window { animation: night-twinkle 3s ease-in-out infinite; }
+@keyframes night-twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
+.night__flow { animation: night-flow 1.1s linear infinite; }
+@keyframes night-flow { to { stroke-dashoffset: -18; } }
+.night__ping { transform-box: fill-box; transform-origin: center; animation: night-ping 1.5s ease-out infinite; }
+@keyframes night-ping { 0% { scale: 1; opacity: 1; } 100% { scale: 2.6; opacity: 0; } }
+.night__moon { animation: att-bob 7s ease-in-out infinite; }
+
+/* Auth panel gets a small attendant row at the bottom */
+.auth__crew { display: flex; align-items: flex-end; gap: var(--space-3); height: 110px; }
+.auth__crew .att-wrap { width: 80px; height: 100px; }
+.auth__crew .att { filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.35)); }
+
+@media (max-width: 860px) {
+  .board__hours { display: none; }
+  .board__who { width: 56px; }
+  .board__who .att-wrap { width: 56px; height: 70px; }
+  .night svg { height: 220px; }
+}
+
+/* ---------- Charging progress ---------- */
+.charge__visual { position: relative; width: 250px; margin: 0 auto; padding-right: 34px; }
+.charge__crew { position: absolute; right: -8px; bottom: -14px; width: 74px; height: 92px; }
+.charge__ring { filter: drop-shadow(0 10px 18px rgb(20 184 125 / 0.25)); }
+@media (max-width: 640px) { .charge__crew { right: -6px; } }

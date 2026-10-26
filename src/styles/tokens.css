@@ -2,29 +2,29 @@
    Every colour, size and radius in the app comes from here. Feature CSS must use these
    variables and must not hard-code colours. Changing a token needs a PM-reviewed pull request. */
 :root {
-  /* Brand: dark navy surfaces with an electric teal accent */
-  --navy-950: #071427;
-  --navy-900: #0b1f3a;
-  --navy-800: #0f2a4d;
-  --navy-700: #16386a;
-  --navy-600: #1f4a85;
-  --teal-500: #00d4aa;
-  --teal-600: #00b894;
-  --teal-700: #008f74;
-  --teal-800: #00755f; /* readable teal for text on white */
-  --teal-100: #d3f9ef;
-  --teal-50: #eefcf8;
+  /* Brand: deep navy ink on an ice-blue page with an emerald green accent */
+  --navy-950: #04122a;
+  --navy-900: #0a1f44;
+  --navy-800: #12305f;
+  --navy-700: #1b4a8a;
+  --navy-600: #2a62ad;
+  --teal-500: #2be59e;
+  --teal-600: #14b87d;
+  --teal-700: #0f9a68;
+  --teal-800: #0a7d56; /* readable green for text on white */
+  --teal-100: #cdf7e4;
+  --teal-50: #eafbf3;
 
   /* Neutrals */
-  --grey-50: #f6f8fb;
-  --grey-100: #eef2f7;
-  --grey-200: #e1e7ef;
-  --grey-300: #cbd5e1;
-  --grey-400: #94a3b8;
-  --grey-500: #64748b;
-  --grey-600: #475569;
-  --grey-700: #334155;
-  --grey-900: #0f172a;
+  --grey-50: #eaf3f6;
+  --grey-100: #e2edf2;
+  --grey-200: #d3e1ea;
+  --grey-300: #b9cbd8;
+  --grey-400: #8aa0b5;
+  --grey-500: #566b85;
+  --grey-600: #3b5373;
+  --grey-700: #2a4163;
+  --grey-900: #0a1f44;
   --white: #ffffff;
 
   /* Status colours */
@@ -44,24 +44,26 @@
   /* Semantic aliases (use these in components) */
   --color-bg: var(--grey-50);
   --color-surface: var(--white);
+  --color-glass: rgb(255 255 255 / 0.74);
   --color-text: var(--grey-900);
   --color-text-muted: var(--grey-500);
-  --color-border: var(--grey-200);
+  --color-border: rgb(10 31 68 / 0.14);
   --color-primary: var(--navy-900);
   --color-accent: var(--teal-500);
   --color-link: var(--teal-800);
   --color-focus: #1a73e8;
 
   /* Slot calendar states */
-  --slot-free: var(--teal-50);
-  --slot-free-border: var(--teal-500);
-  --slot-booked: var(--grey-200);
+  --slot-free: rgb(43 229 158 / 0.18);
+  --slot-free-border: var(--teal-600);
+  --slot-booked: rgb(10 31 68 / 0.1);
   --slot-blocked: var(--warning-bg);
   --slot-past: var(--grey-100);
   --slot-selected: var(--navy-900);
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-sans: 'Hanken Grotesk', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --text-xs: 0.78rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -87,8 +89,8 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 999px;
-  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.05);
-  --shadow-md: 0 6px 18px rgb(15 23 42 / 0.08);
+  --shadow-sm: 0 1px 2px rgb(10 31 68 / 0.06), 0 8px 20px -14px rgb(10 31 68 / 0.35);
+  --shadow-md: 0 14px 34px -20px rgb(10 31 68 / 0.4);
   --shadow-lg: 0 18px 48px rgb(7 20 39 / 0.18);
 
   /* Layout */
@@ -96,4 +98,7 @@
   --topbar-height: 64px;
   --content-max: 1180px;
   --transition: 160ms ease;
+
+  /* Page backdrop: ice blue with a soft green glow (top right) and a soft blue glow (bottom left) */
+  --page-bg: radial-gradient(900px 520px at 90% -6%, rgb(43 229 158 / 0.26), transparent 60%), radial-gradient(800px 560px at -6% 108%, rgb(70 130 230 / 0.2), transparent 60%), #eaf3f6;
 }

@@ -7,11 +7,14 @@
 // Props: status ('scheduled' | 'charging' | 'completed' | 'cancelled'), progressPct (0-100),
 //        energyKwh, cost, durationMinutes, estimatedCompletion ('YYYY-MM-DDTHH:mm' or null),
 //        powerKw, stationName, chargerLabel
+import Attendant from './Attendant.jsx';
 import { StatusBadge } from './Badge.jsx';
 import { formatDuration, formatKwh, formatMoney } from '../lib/format.js';
 
 const RADIUS = 80;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+// The attendant next to the ring reacts to the session state (decoration only).
+const POSE = { scheduled: 'idle', charging: 'work', completed: 'done', cancelled: 'no' };
 
 export default function ChargingProgress({ status, progressPct = 0, energyKwh = 0, cost = 0, durationMinutes = 0, estimatedCompletion = null, powerKw, stationName, chargerLabel }) {
   const pct = Math.max(0, Math.min(100, Math.round(progressPct)));
@@ -19,14 +22,25 @@ export default function ChargingProgress({ status, progressPct = 0, energyKwh = 
 
   return (
     <section className={`card charge charge--${status}`} aria-label="Charging session progress">
+      <div className="charge__visual">
       <div className="charge__ring" role="img" aria-label={`${pct} percent charged`}>
         <svg viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <linearGradient id="charge-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#5bffc0" />
+              <stop offset="1" stopColor="#14b87d" />
+            </linearGradient>
+          </defs>
           <circle className="charge__track" cx="100" cy="100" r={RADIUS} />
           <circle className="charge__value" cx="100" cy="100" r={RADIUS} strokeDasharray={CIRCUMFERENCE} strokeDashoffset={offset} />
         </svg>
         <div className="charge__center">
           <strong>{pct}%</strong>
           <span>charged</span>
+        </div>
+      </div>
+        <div className="charge__crew">
+          <Attendant pose={POSE[status] ?? 'idle'} look={1} />
         </div>
       </div>
       <div>

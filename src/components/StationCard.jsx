@@ -43,7 +43,7 @@ export default function StationCard({ station, to = paths.station(station.id) })
         </div>
         <div>
           <strong>{station.minPrice != null ? `${station.minPrice.toFixed(2)} €` : '-'}</strong>
-          <span>from per kWh</span>
+          <span>per kWh, from</span>
         </div>
       </div>
     </Link>
